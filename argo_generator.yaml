@@ -1,0 +1,38 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dynamic-dev-env
+spec:
+  generators:
+  - scmProvider:
+      cloneProtocol: https
+      filters:
+        - branchMatch: ^feature
+          repositoryMatch: ^app
+      github:
+        allBranches: true
+        api: "https://github.com/geksogen/ArgoCD_app"
+        group: demo
+        includeSubgroups: false
+        #tokenRef:
+        #  key: token
+        #  secretName: gitlab-token
+  template:
+    metadata:
+      name: "{{ repository }}-{{ branch }}"
+    spec:
+      destination:
+        namespace: "{{ repository }}-{{ branch }}"
+        server: "https://kubernetes.default.svc"                # default cluster is used, other cluster can be specified here
+      project: default                                          # argocd project
+      source:
+        repoURL: https://github.com/geksogen/argocd-node-app-config.git
+        targetRevision: HEAD
+        path: node-app
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
