@@ -9,7 +9,7 @@ spec:
       cloneProtocol: https
       filters:
         - branchMatch: ^feature
-          repositoryMatch: ^app
+          #repositoryMatch: ^app
       github:
         allBranches: true
         organization: "https://github.com/geksogen/ArgoCD_app"
