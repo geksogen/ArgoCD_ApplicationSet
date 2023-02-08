@@ -12,7 +12,7 @@ spec:
           repositoryMatch: ^app
       github:
         allBranches: true
-        api: "https://github.com/geksogen/ArgoCD_app"
+        organization: "https://github.com/geksogen/ArgoCD_app"
         #group: demo
         #includeSubgroups: false
         #tokenRef:
