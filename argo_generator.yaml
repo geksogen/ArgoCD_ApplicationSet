@@ -13,8 +13,8 @@ spec:
       github:
         allBranches: true
         api: "https://github.com/geksogen/ArgoCD_app"
-        group: demo
-        includeSubgroups: false
+        #group: demo
+        #includeSubgroups: false
         #tokenRef:
         #  key: token
         #  secretName: gitlab-token
